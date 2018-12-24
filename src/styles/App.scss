@@ -20,6 +20,15 @@ $card-border-color: rgba(0, 0, 0, 0.125);
         .sub-collapse-section {
           .sub-sub-header {
             border-left: 1px solid $card-border-color;
+            .location-room {
+              font-weight: 600;
+              font-size: 20px;
+              text-decoration: underline;
+            }
+
+            img {
+              width: 100%;
+            }
           }
 
           &.show {
