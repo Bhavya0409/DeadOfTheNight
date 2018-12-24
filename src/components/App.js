@@ -2,50 +2,13 @@ import React, { Component } from 'react';
 import '../styles/App.scss';
 import { Button, Card, CardHeader, Col, Collapse, Container, Navbar, NavbarBrand, Row } from 'reactstrap';
 
-import Shield1Location1 from '../resources/shield/shield_part_1_location_1.png';
-import Shield1Location2 from '../resources/shield/shield_part_1_location_2.png';
-import Shield1Location3 from '../resources/shield/shield_part_1_location_3.png';
-
-const SHIELD_HEADER = 'shield_header';
-const SHIELD_PART = 'shield_part';
-
-const SHIELD_PART_LOCATIONS_IMAGES = [
-	[Shield1Location1, Shield1Location2, Shield1Location3],
-	['', '', ''],
-	['', '', ''],
-];
-
-const SHIELD_PART_LOCATION_ROOMS = [
-	[
-		'East Balcony',
-		'Grand Staircase',
-		'West Balcony'
-	], [
-		'East Balcony',
-		'Grand Staircase',
-		'West Balcony'
-	], [
-		'East Balcony',
-		'Grand Staircase',
-		'West Balcony'
-	],
-];
-
-const SHIELD_PART_LOCATION_DESCRIPTIONS = [
-	[
-		'To the left of the Saug wall buy, resting on a railing',
-		'To the right of Sentinel Artifact, resting on a pillar',
-		'Resting on the back wall of the west balcony'
-	], [
-		'To the left of the Saug wall buy, resting on a railing',
-		'To the right of Sentinel Artifact, resting on a pillar',
-		'Resting on the back wall of the west balcony'
-	], [
-		'To the left of the Saug wall buy, resting on a railing',
-		'To the right of Sentinel Artifact, resting on a pillar',
-		'Resting on the back wall of the west balcony'
-	],
-];
+import {
+	SHIELD_PART_LOCATION_ROOMS,
+	SHIELD_PART_LOCATION_DESCRIPTIONS,
+	SHIELD_PART_LOCATIONS_IMAGES,
+	SHIELD_PART,
+	SHIELD_HEADER
+} from "../constants";
 
 class App extends Component {
 
@@ -61,10 +24,8 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.state);
 		return (
 			<div className="App">
-
 				<div className="header">
 					<Navbar expand="lg">
 						<NavbarBrand href="#" className="mx-auto">Dead Of The Night Guide</NavbarBrand>
@@ -103,8 +64,10 @@ class App extends Component {
 																		<CardHeader className="sub-sub-header">
 																			<Row>
 																				<Col lg="3">
-																					<p className="location-room">{SHIELD_PART_LOCATION_ROOMS[shieldPartIndex][shieldPartLocationIndex]}</p>
-																					<p className="location-description">{SHIELD_PART_LOCATION_DESCRIPTIONS[shieldPartIndex][shieldPartLocationIndex]}</p>
+																					<p
+																						className="location-room">{SHIELD_PART_LOCATION_ROOMS[shieldPartIndex][shieldPartLocationIndex]}</p>
+																					<p
+																						className="location-description">{SHIELD_PART_LOCATION_DESCRIPTIONS[shieldPartIndex][shieldPartLocationIndex]}</p>
 																				</Col>
 																				<Col lg="9">
 																					<img src={locationShieldParts[shieldPartLocationIndex]}/>
