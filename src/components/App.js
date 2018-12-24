@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import '../styles/App.scss';
-import { Button, Card, CardHeader, Col, Collapse, Container, Navbar, NavbarBrand, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Collapse, Container, Navbar, NavbarBrand, Row } from 'reactstrap';
+
+import ShieldPart1 from '../resources/shield/shield_part_1.png';
+import ShieldPart2 from '../resources/shield/shield_part_2.png';
+import ShieldPart3 from '../resources/shield/shield_part_3.png';
+
+const SHIELD_HEADER = 'shield_header';
+const SHIELD_PART = 'shield_part';
 
 class App extends Component {
 
 	state = {
-		open: true
+		[SHIELD_HEADER]: true,
+		[`${SHIELD_PART}_1`]: false,
+		[`${SHIELD_PART}_2`]: false,
+		[`${SHIELD_PART}_3`]: false,
 	};
 
-	onClick = () => {
-		this.setState({open: !this.state.open})
-	}
+	onClick = (e) => {
+		this.setState({[e.target.id]: !this.state[e.target.id]})
+	};
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className="App">
 
@@ -25,24 +36,43 @@ class App extends Component {
 				<Container>
 					<Row>
 						<Col lg="12">
-							<Card>
-								<CardHeader>
-									<Button color="link" id="toggler" onClick={this.onClick}>
-										Collapsible Group Item #1
+							<Card className="main-section shield">
+								<CardHeader className="main-header">
+									<Button color="link" id={SHIELD_HEADER} onClick={e => this.onClick(e)}>
+										Shield Part Locations
 									</Button>
 								</CardHeader>
 
-								<Collapse toggler="#toggler" isOpen={this.state.open}>
-									<div id="collapseOne">
-										<div className="card-body">
-											Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-											moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-											Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-											shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-											proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-											aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-										</div>
-									</div>
+								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={this.state[SHIELD_HEADER]} className="collapse-section">
+									{[...Array(3).keys()].map(index => {
+										return (
+											<Row key={index}>
+												<Col lg={{size: '11', offset: '1'}}>
+													<CardHeader className={`sub-header ${index === 2 && this.state[`${SHIELD_PART}_${index + 1}`] ? 'show' : ''} ${this.state[`${SHIELD_PART}_${index}`] ? 'previous-open' : ''}`}>
+														<Button color="link" id={`${SHIELD_PART}_${index + 1}`} onClick={e => this.onClick(e)}>
+															Shield Part {index + 1} Locations
+														</Button>
+													</CardHeader>
+
+													<Collapse toggler={`#${SHIELD_PART}_${index + 1}`} isOpen={this.state[`${SHIELD_PART}_${index + 1}`]} className="sub-collapse-section">
+														{[...Array(3).keys()].map(index => {
+															return (
+																<Row key={index}>
+																	<Col lg={{size: '11', offset: '1'}}>
+																		<CardHeader className="sub-sub-header">
+																			<Button color="link">
+																				Blah
+																			</Button>
+																		</CardHeader>
+																	</Col>
+																</Row>
+															)
+														})}
+													</Collapse>
+												</Col>
+											</Row>
+										)
+									})}
 								</Collapse>
 							</Card>
 						</Col>
