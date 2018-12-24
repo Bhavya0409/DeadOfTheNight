@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './components/App';
