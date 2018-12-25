@@ -37,7 +37,8 @@ class ShieldPartRow extends Component {
 					<Collapse toggler={`#${SHIELD_PART}_${shieldPartIndex + 1}`}
 					          isOpen={this.props.shield[`${SHIELD_PART}_${shieldPartIndex + 1}`]}
 					          className="sub-collapse-section">
-						{[...Array(3).keys()].map(shieldPartLocationIndex => <ShieldPartLocationRow shieldPartIndex={shieldPartIndex}
+						{[...Array(3).keys()].map(shieldPartLocationIndex => <ShieldPartLocationRow key={shieldPartLocationIndex}
+						                                                                            shieldPartIndex={shieldPartIndex}
 						                                                                            shieldPartLocationIndex={shieldPartLocationIndex}/>)}
 					</Collapse>
 				</Col>

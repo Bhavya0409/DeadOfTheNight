@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Card, CardHeader, Col, Collapse, Container, Navbar, NavbarBrand, Row } from 'reactstrap';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { Card, Col, Collapse, Container, Navbar, NavbarBrand, Row } from 'reactstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import CollapseSectionHeader from './CollapseSectionHeader';
 
-import {toggleShieldMainHeader, toggleShieldSubHeader} from "../actions/shieldActions";
+import { toggleShieldMainHeader, toggleShieldSubHeader } from "../actions/shieldActions";
 
 import '../styles/App.scss';
 
-import {
-	SHIELD_PART_LOCATION_ROOMS,
-	SHIELD_PART_LOCATION_DESCRIPTIONS,
-	SHIELD_PART_LOCATIONS_IMAGES,
-	SHIELD_PART,
-	SHIELD_HEADER
-} from "../constants";
-import ShieldPartLocationRow from "./ShieldPartLocationRow";
+import { SHIELD_HEADER } from "../constants";
 import ShieldPartRow from "./ShieldPartRow";
 
 const mapStateToProps = state => {
@@ -25,7 +18,7 @@ const mapStateToProps = state => {
 	}
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({toggleShieldMainHeader, toggleShieldSubHeader}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ toggleShieldMainHeader, toggleShieldSubHeader }, dispatch);
 
 class App extends Component {
 
@@ -38,7 +31,7 @@ class App extends Component {
 					</Navbar>
 				</div>
 
-				<Container>
+				<Container className="mb-3">
 					<Row>
 						<Col lg="12">
 							<Card className="main-section shield">
@@ -47,7 +40,8 @@ class App extends Component {
 								                       headerName={"Shield Part Locations"}/>
 
 								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={this.props.shield[SHIELD_HEADER]} className="collapse-section">
-									{[...Array(3).keys()].map(shieldPartIndex => <ShieldPartRow shieldPartIndex={shieldPartIndex}/>)}
+									{[...Array(3).keys()].map(shieldPartIndex => <ShieldPartRow key={shieldPartIndex}
+									                                                            shieldPartIndex={shieldPartIndex}/>)}
 								</Collapse>
 							</Card>
 						</Col>

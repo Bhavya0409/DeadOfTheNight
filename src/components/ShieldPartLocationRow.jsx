@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {CardHeader, Row, Col} from 'reactstrap';
+import React, { Component } from 'react';
+import { CardHeader, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import { SHIELD_PART_LOCATION_DESCRIPTIONS, SHIELD_PART_LOCATION_ROOMS, SHIELD_PART_LOCATIONS_IMAGES } from "../constants";
 
 class ShieldPartLocationRow extends Component {
 	render() {
-		const {shieldPartIndex, shieldPartLocationIndex} = this.props;
+		const { shieldPartIndex, shieldPartLocationIndex } = this.props;
 		return (
 			<Row key={shieldPartLocationIndex}>
 				<Col lg={{ size: '11', offset: '1' }}>
