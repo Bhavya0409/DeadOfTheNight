@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/DeadOfTheNight/precache-manifest.62a48425decad9a9088010d14be8f0f4.js"
+  "/DeadOfTheNight/precache-manifest.fb1d1c1cd8f01a64c96bbdff30b9c241.js"
 );
 
 workbox.clientsClaim();

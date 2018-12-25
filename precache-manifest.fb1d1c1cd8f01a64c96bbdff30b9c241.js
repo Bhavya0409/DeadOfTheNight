@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/DeadOfTheNight/static/media/shield_part_3_location_2.dad55e02.png"
   },
   {
-    "revision": "3646147b45fd7f67a445",
+    "revision": "1ad81f0397d9f62b8923",
     "url": "/DeadOfTheNight/static/css/main.24c7e355.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/DeadOfTheNight/static/media/shield_part_2_location_2.10aca345.png"
   },
   {
-    "revision": "3646147b45fd7f67a445",
-    "url": "/DeadOfTheNight/static/js/main.3646147b.chunk.js"
+    "revision": "1ad81f0397d9f62b8923",
+    "url": "/DeadOfTheNight/static/js/main.1ad81f03.chunk.js"
   },
   {
     "revision": "04486a1a75be3b4f3b55f692e90b9e07",
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/DeadOfTheNight/static/css/1.c3027e5b.chunk.css"
   },
   {
-    "revision": "a4394351a89e22d75e942e16fc91914c",
+    "revision": "5d62633789c8f5998d64568ef97f666b",
     "url": "/DeadOfTheNight/index.html"
   }
 ];

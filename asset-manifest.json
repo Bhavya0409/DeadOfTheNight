@@ -1,7 +1,7 @@
 {
   "main.css": "/DeadOfTheNight/static/css/main.24c7e355.chunk.css",
-  "main.js": "/DeadOfTheNight/static/js/main.3646147b.chunk.js",
-  "main.js.map": "/DeadOfTheNight/static/js/main.3646147b.chunk.js.map",
+  "main.js": "/DeadOfTheNight/static/js/main.1ad81f03.chunk.js",
+  "main.js.map": "/DeadOfTheNight/static/js/main.1ad81f03.chunk.js.map",
   "static/css/1.c3027e5b.chunk.css": "/DeadOfTheNight/static/css/1.c3027e5b.chunk.css",
   "static/js/1.fa0c06e2.chunk.js": "/DeadOfTheNight/static/js/1.fa0c06e2.chunk.js",
   "static/js/1.fa0c06e2.chunk.js.map": "/DeadOfTheNight/static/js/1.fa0c06e2.chunk.js.map",
@@ -17,6 +17,6 @@
   "static/css/main.24c7e355.chunk.css.map": "/DeadOfTheNight/static/css/main.24c7e355.chunk.css.map",
   "static/css/1.c3027e5b.chunk.css.map": "/DeadOfTheNight/static/css/1.c3027e5b.chunk.css.map",
   "index.html": "/DeadOfTheNight/index.html",
-  "precache-manifest.62a48425decad9a9088010d14be8f0f4.js": "/DeadOfTheNight/precache-manifest.62a48425decad9a9088010d14be8f0f4.js",
+  "precache-manifest.fb1d1c1cd8f01a64c96bbdff30b9c241.js": "/DeadOfTheNight/precache-manifest.fb1d1c1cd8f01a64c96bbdff30b9c241.js",
   "service-worker.js": "/DeadOfTheNight/service-worker.js"
 }
