@@ -1,13 +1,30 @@
 $card-border-color: rgba(0, 0, 0, 0.125);
+$collected-header-color: #96ff7c;
+$not-collected-header-color: #ffbcbc;
 
 .container {
   text-align: center;
   .main-section {
     .main-header {
+      margin-left: 1px;
+      background-color: $not-collected-header-color;
 
+      button {
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      &.collected {
+        background-color: $collected-header-color;
+      }
     }
     .collapse-section {
       .row {
+        .checked-field {
+          display: flex;
+          justify-content: center;
+          cursor: pointer;
+        }
         .sub-header {
           border-left: 1px solid $card-border-color;
           border-radius: 0px;

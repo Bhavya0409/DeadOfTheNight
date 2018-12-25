@@ -9,7 +9,7 @@ import { toggleShieldMainHeader, toggleShieldSubHeader } from "../actions/shield
 
 import '../styles/App.scss';
 
-import { SHIELD_HEADER } from "../constants";
+import { SHIELD_HEADER, SHIELD_PART } from "../constants";
 import ShieldPartRow from "./ShieldPartRow";
 
 const mapStateToProps = state => {
@@ -23,6 +23,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({ toggleShieldMainHead
 class App extends Component {
 
 	render() {
+		const {shield} = this.props;
+		const collected = shield[`${SHIELD_PART}_1_collected`] && shield[`${SHIELD_PART}_2_collected`] && shield[`${SHIELD_PART}_3_collected`];
 		return (
 			<div className="App">
 				<div className="header">
@@ -37,7 +39,8 @@ class App extends Component {
 							<Card className="main-section shield">
 								<CollapseSectionHeader id={SHIELD_HEADER}
 								                       onClick={() => this.props.toggleShieldMainHeader()}
-								                       headerName={"Shield Part Locations"}/>
+								                       headerName={"Shield"}
+								                       classNames={['main-header', collected ? 'collected' : '']}/>
 
 								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={this.props.shield[SHIELD_HEADER]} className="collapse-section">
 									{[...Array(3).keys()].map(shieldPartIndex => <ShieldPartRow key={shieldPartIndex}
