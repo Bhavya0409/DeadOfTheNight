@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { connectRouter } from 'connected-react-router';
-import test from "./testReducer";
+import shield from './shieldReducer';
 
 export default (history) => combineReducers({
 	router: connectRouter(history),
-	test
+	shield
 })

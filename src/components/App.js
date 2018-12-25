@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import '../styles/App.scss';
 import { Button, Card, CardHeader, Col, Collapse, Container, Navbar, NavbarBrand, Row } from 'reactstrap';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+import CollapseSectionHeader from './CollapseSectionHeader';
+
+import {toggleShieldMainHeader, toggleShieldSubHeader} from "../actions/shieldActions";
+
+import '../styles/App.scss';
 
 import {
 	SHIELD_PART_LOCATION_ROOMS,
@@ -10,18 +17,15 @@ import {
 	SHIELD_HEADER
 } from "../constants";
 
+const mapStateToProps = state => {
+	return {
+		shield: state.shield
+	}
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({toggleShieldMainHeader, toggleShieldSubHeader}, dispatch);
+
 class App extends Component {
-
-	state = {
-		[SHIELD_HEADER]: true,
-		[`${SHIELD_PART}_1`]: false,
-		[`${SHIELD_PART}_2`]: false,
-		[`${SHIELD_PART}_3`]: false,
-	};
-
-	onClick = (e) => {
-		this.setState({ [e.target.id]: !this.state[e.target.id] })
-	};
 
 	render() {
 		return (
@@ -36,27 +40,28 @@ class App extends Component {
 					<Row>
 						<Col lg="12">
 							<Card className="main-section shield">
-								<CardHeader className="main-header">
-									<Button color="link" id={SHIELD_HEADER} onClick={e => this.onClick(e)}>
-										Shield Part Locations
-									</Button>
-								</CardHeader>
+								<CollapseSectionHeader id={SHIELD_HEADER}
+								                       onClick={() => this.props.toggleShieldMainHeader()}
+								                       headerName={"Shield Part Locations"}/>
 
-								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={this.state[SHIELD_HEADER]} className="collapse-section">
+								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={this.props.shield[SHIELD_HEADER]} className="collapse-section">
 									{[...Array(3).keys()].map(shieldPartIndex => {
 										const locationShieldParts = SHIELD_PART_LOCATIONS_IMAGES[shieldPartIndex];
 										return (
 											<Row key={shieldPartIndex}>
 												<Col lg={{ size: '11', offset: '1' }}>
-													<CardHeader
-														className={`sub-header ${shieldPartIndex === 2 && this.state[`${SHIELD_PART}_${shieldPartIndex + 1}`] ? 'show' : ''} ${this.state[`${SHIELD_PART}_${shieldPartIndex}`] ? 'previous-open' : ''}`}>
-														<Button color="link" id={`${SHIELD_PART}_${shieldPartIndex + 1}`} onClick={e => this.onClick(e)}>
-															Shield Part {shieldPartIndex + 1} Locations
-														</Button>
-													</CardHeader>
+													<CollapseSectionHeader id={`${SHIELD_PART}_${shieldPartIndex + 1}`}
+													                       onClick={e => this.props.toggleShieldSubHeader(e.target.id)}
+													                       headerName={`Shield Part ${shieldPartIndex + 1} Locations`}
+													                       classNames={[
+													                       	'sub-header',
+														                       shieldPartIndex === 2 && this.props.shield[`${SHIELD_PART}_${shieldPartIndex + 1}`] ? 'show' : '',
+														                       this.props.shield[`${SHIELD_PART}_${shieldPartIndex}`] ? 'previous-open' : ''
+													                       ]}/>
 
 													<Collapse toggler={`#${SHIELD_PART}_${shieldPartIndex + 1}`}
-													          isOpen={this.state[`${SHIELD_PART}_${shieldPartIndex + 1}`]} className="sub-collapse-section">
+													          isOpen={this.props.shield[`${SHIELD_PART}_${shieldPartIndex + 1}`]}
+													          className="sub-collapse-section">
 														{[...Array(3).keys()].map(shieldPartLocationIndex => {
 															return (
 																<Row key={shieldPartLocationIndex}>
@@ -93,4 +98,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
