@@ -16,6 +16,8 @@ import {
 	SHIELD_PART,
 	SHIELD_HEADER
 } from "../constants";
+import ShieldPartLocationRow from "./ShieldPartLocationRow";
+import ShieldPartRow from "./ShieldPartRow";
 
 const mapStateToProps = state => {
 	return {
@@ -45,49 +47,7 @@ class App extends Component {
 								                       headerName={"Shield Part Locations"}/>
 
 								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={this.props.shield[SHIELD_HEADER]} className="collapse-section">
-									{[...Array(3).keys()].map(shieldPartIndex => {
-										const locationShieldParts = SHIELD_PART_LOCATIONS_IMAGES[shieldPartIndex];
-										return (
-											<Row key={shieldPartIndex}>
-												<Col lg={{ size: '11', offset: '1' }}>
-													<CollapseSectionHeader id={`${SHIELD_PART}_${shieldPartIndex + 1}`}
-													                       onClick={e => this.props.toggleShieldSubHeader(e.target.id)}
-													                       headerName={`Shield Part ${shieldPartIndex + 1} Locations`}
-													                       classNames={[
-													                       	'sub-header',
-														                       shieldPartIndex === 2 && this.props.shield[`${SHIELD_PART}_${shieldPartIndex + 1}`] ? 'show' : '',
-														                       this.props.shield[`${SHIELD_PART}_${shieldPartIndex}`] ? 'previous-open' : ''
-													                       ]}/>
-
-													<Collapse toggler={`#${SHIELD_PART}_${shieldPartIndex + 1}`}
-													          isOpen={this.props.shield[`${SHIELD_PART}_${shieldPartIndex + 1}`]}
-													          className="sub-collapse-section">
-														{[...Array(3).keys()].map(shieldPartLocationIndex => {
-															return (
-																<Row key={shieldPartLocationIndex}>
-																	<Col lg={{ size: '11', offset: '1' }}>
-																		<CardHeader className="sub-sub-header">
-																			<Row>
-																				<Col lg="3">
-																					<p
-																						className="location-room">{SHIELD_PART_LOCATION_ROOMS[shieldPartIndex][shieldPartLocationIndex]}</p>
-																					<p
-																						className="location-description">{SHIELD_PART_LOCATION_DESCRIPTIONS[shieldPartIndex][shieldPartLocationIndex]}</p>
-																				</Col>
-																				<Col lg="9">
-																					<img src={locationShieldParts[shieldPartLocationIndex]}/>
-																				</Col>
-																			</Row>
-																		</CardHeader>
-																	</Col>
-																</Row>
-															)
-														})}
-													</Collapse>
-												</Col>
-											</Row>
-										)
-									})}
+									{[...Array(3).keys()].map(shieldPartIndex => <ShieldPartRow shieldPartIndex={shieldPartIndex}/>)}
 								</Collapse>
 							</Card>
 						</Col>
