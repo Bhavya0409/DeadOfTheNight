@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 	return {
 		shield: state.shield
 	}
-}
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({ toggleShieldMainHeader, toggleShieldSubHeader }, dispatch);
 

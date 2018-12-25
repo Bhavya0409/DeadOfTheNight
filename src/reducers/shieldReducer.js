@@ -13,7 +13,10 @@ export default (state = initialState, action) => {
 		case TOGGLE_SHIELD_MAIN_HEADER:
 			return {
 				...state,
-				[SHIELD_HEADER]: !state[SHIELD_HEADER]
+				[SHIELD_HEADER]: !state[SHIELD_HEADER],
+				[`${SHIELD_PART}_1`]: false,
+				[`${SHIELD_PART}_2`]: false,
+				[`${SHIELD_PART}_3`]: false,
 			};
 		case TOGGLE_SHIELD_SUB_HEADER:
 			console.log(action.shieldPart);
