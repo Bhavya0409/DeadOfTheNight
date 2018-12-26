@@ -50,3 +50,5 @@ export const SHIELD_PART_LOCATIONS_IMAGES = [
 
 export const SHIELD_HEADER = 'shield_header';
 export const SHIELD_PART = 'shield_part';
+
+export const SECRET_DOOR_HEADER = 'secret_door_header';

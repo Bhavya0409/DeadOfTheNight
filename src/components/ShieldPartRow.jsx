@@ -57,6 +57,6 @@ class ShieldPartRow extends Component {
 
 ShieldPartRow.propTypes = {
 	shieldPartIndex: PropTypes.number.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShieldPartRow);
