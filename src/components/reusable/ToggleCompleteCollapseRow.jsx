@@ -24,13 +24,13 @@ const mapDispatchToProps = dispatch => {
  */
 class ToggleCompleteCollapseRow extends Component {
 	render() {
-		const { onToggleComplete, rowId, collected, collapseHeaderId, onHeaderToggle, headerName, isOpen, classNames = [''], children } = this.props;
+		const { onToggleComplete, completed, collapseHeaderId, onHeaderToggle, headerName, isOpen, classNames = [''], children } = this.props;
 		return (
 			<Row className="toggle-complete-collapse-row">
-				<Col lg="1" className="pr-0 mt-3 checked-field" onClick={() => onToggleComplete(rowId)}>
-					<FontAwesomeIcon icon={collected ? faCheckCircle : faTimesCircle}
+				<Col lg="1" className="pr-0 mt-3 checked-field" onClick={() => onToggleComplete()}>
+					<FontAwesomeIcon icon={completed ? faCheckCircle : faTimesCircle}
 					                 size="2x"
-					                 color={collected ? 'green' : 'red'}/>
+					                 color={completed ? 'green' : 'red'}/>
 				</Col>
 				<Col lg="11" className="pl-0">
 					<CollapseSectionHeader id={collapseHeaderId}
@@ -50,9 +50,8 @@ class ToggleCompleteCollapseRow extends Component {
 };
 
 ToggleCompleteCollapseRow.propTypes = {
-	rowId: PropTypes.number.isRequired,
 	onToggleComplete: PropTypes.func.isRequired,
-	collected: PropTypes.bool.isRequired,
+	completed: PropTypes.bool.isRequired,
 	collapseHeaderId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 	onHeaderToggle: PropTypes.func.isRequired,
 	headerName: PropTypes.string.isRequired,

@@ -19,7 +19,8 @@ class ShieldPartLocationRow extends Component {
 									className="location-description">{SHIELD_PART_LOCATION_DESCRIPTIONS[shieldPartIndex][shieldPartLocationIndex]}</p>
 							</Col>
 							<Col lg="9">
-								<img src={SHIELD_PART_LOCATIONS_IMAGES[shieldPartIndex][shieldPartLocationIndex]}/>
+								<img src={SHIELD_PART_LOCATIONS_IMAGES[shieldPartIndex][shieldPartLocationIndex]}
+								     alt={`Shield Part Location ${shieldPartIndex}-${shieldPartLocationIndex}`}/>
 							</Col>
 						</Row>
 					</CardHeader>

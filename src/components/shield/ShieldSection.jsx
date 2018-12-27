@@ -30,14 +30,13 @@ class ShieldSection extends Component {
 				<CollapseSectionHeader id={SHIELD_HEADER}
 				                       onClick={() => toggleShieldMainHeader()}
 				                       headerName={"Shield"}
-				                       classNames={['main-header', allShieldPartsCollected ? 'collected' : '']}/>
+				                       classNames={['main-header', allShieldPartsCollected ? 'completed' : '']}/>
 
 				<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={shield[SHIELD_HEADER]} className="collapse-section">
 					{[...Array(3).keys()].map(shieldPartIndex => {
 						return <ToggleCompleteCollapseRow key={shieldPartIndex}
-						                                  rowId={shieldPartIndex}
 						                                  onToggleComplete={() => toggleShieldPartCollected(shieldPartIndex + 1)}
-						                                  collected={shield[`${SHIELD_PART}_${shieldPartIndex + 1}_collected`]}
+						                                  completed={shield[`${SHIELD_PART}_${shieldPartIndex + 1}_collected`]}
 						                                  collapseHeaderId={`${SHIELD_PART}_${shieldPartIndex + 1}`}
 						                                  onHeaderToggle={id => toggleShieldSubHeader(id)}
 						                                  headerName={`Shield Part ${shieldPartIndex + 1} Locations`}

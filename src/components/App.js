@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import '../styles/App.scss';
 
 import ShieldSection from "./shield/ShieldSection";
+import SecretDoorSection from './secretDoors/SecretDoorSection';
 
 const mapStateToProps = state => {
 	return {}
@@ -28,6 +29,7 @@ class App extends Component {
 					<Row>
 						<Col lg="12">
 							<ShieldSection/>
+							<SecretDoorSection/>
 						</Col>
 					</Row>
 				</Container>
