@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 
 import CollapseSectionHeader from './CollapseSectionHeader';
 
-import { toggleShieldMainHeader, toggleShieldSubHeader } from "../actions/shieldActions";
+import { toggleShieldMainHeader, toggleShieldPartCollected, toggleShieldSubHeader } from "../actions/shieldActions";
 import { toggleSecretDoorMainHeader } from "../actions/secretDoorActions";
 
 import '../styles/App.scss';
 
-import { SECRET_DOOR_HEADER, SHIELD_HEADER, SHIELD_PART } from "../constants";
-import ShieldPartRow from "./ShieldPartRow";
+import { SHIELD_HEADER, SHIELD_PART } from "../constants";
+import ToggleCompleteCollapseRow from "./ToggleCompleteCollapseRow";
+import ShieldPartLocationRow from "./ShieldPartLocationRow";
 
 const mapStateToProps = state => {
 	return {
@@ -23,14 +24,15 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => bindActionCreators({
 	toggleShieldMainHeader,
 	toggleShieldSubHeader,
-	toggleSecretDoorMainHeader
+	toggleSecretDoorMainHeader,
+	toggleShieldPartCollected
 }, dispatch);
 
 class App extends Component {
 
 	render() {
-		const { shield, toggleShieldMainHeader, secretDoor, toggleSecretDoorMainHeader } = this.props;
-		const collected = shield[`${SHIELD_PART}_1_collected`] && shield[`${SHIELD_PART}_2_collected`] && shield[`${SHIELD_PART}_3_collected`];
+		const { shield, toggleShieldMainHeader, toggleShieldSubHeader, toggleShieldPartCollected } = this.props;
+		const allShieldPartsCollected = shield[`${SHIELD_PART}_1_collected`] && shield[`${SHIELD_PART}_2_collected`] && shield[`${SHIELD_PART}_3_collected`];
 		return (
 			<div className="App">
 				<div className="header">
@@ -46,22 +48,28 @@ class App extends Component {
 								<CollapseSectionHeader id={SHIELD_HEADER}
 								                       onClick={() => toggleShieldMainHeader()}
 								                       headerName={"Shield"}
-								                       classNames={['main-header', collected ? 'collected' : '']}/>
+								                       classNames={['main-header', allShieldPartsCollected ? 'collected' : '']}/>
 
 								<Collapse toggler={`#${SHIELD_HEADER}`} isOpen={shield[SHIELD_HEADER]} className="collapse-section">
-									{[...Array(3).keys()].map(shieldPartIndex => <ShieldPartRow key={shieldPartIndex}
-									                                                            shieldPartIndex={shieldPartIndex}/>)}
-								</Collapse>
-							</Card>
-
-							<Card className="main-section secret-doors">
-								<CollapseSectionHeader id={SECRET_DOOR_HEADER}
-								                       onClick={() => toggleSecretDoorMainHeader()}
-								                       headerName={"Secret Doors"}
-								                       classNames={['main-header']}/>
-
-								<Collapse toggler={`#${SECRET_DOOR_HEADER}`} isOpen={secretDoor[SECRET_DOOR_HEADER]} className="collapse-section">
-									<p>Test</p>
+									{[...Array(3).keys()].map(shieldPartIndex => {
+										return <ToggleCompleteCollapseRow key={shieldPartIndex}
+										                                  rowId={shieldPartIndex}
+										                                  onToggleComplete={() => toggleShieldPartCollected(shieldPartIndex + 1)}
+										                                  collected={shield[`${SHIELD_PART}_${shieldPartIndex + 1}_collected`]}
+										                                  collapseHeaderId={`${SHIELD_PART}_${shieldPartIndex + 1}`}
+										                                  onHeaderToggle={id => toggleShieldSubHeader(id)}
+										                                  headerName={`Shield Part ${shieldPartIndex + 1} Locations`}
+										                                  isOpen={shield[`${SHIELD_PART}_${shieldPartIndex + 1}`]}
+										                                  classNames={[
+											                                  'sub-header',
+											                                  shieldPartIndex === 2 && shield[`${SHIELD_PART}_${shieldPartIndex + 1}`] ? 'show' : '',
+											                                  this.props.shield[`${SHIELD_PART}_${shieldPartIndex}`] ? 'previous-open' : ''
+										                                  ]}>
+											{[...Array(3).keys()].map(shieldPartLocationIndex => <ShieldPartLocationRow key={shieldPartLocationIndex}
+											                                                                            shieldPartIndex={shieldPartIndex}
+											                                                                            shieldPartLocationIndex={shieldPartLocationIndex}/>)}
+										</ToggleCompleteCollapseRow>
+									})}
 								</Collapse>
 							</Card>
 						</Col>
